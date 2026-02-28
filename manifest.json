@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "PrairieLearn Input Plus",
+  "version": "1.0.0",
+  "description": "A Firefox extension that enhances webpage interaction with React components",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    "content.js"
+  ],
+  "permissions": [
+    "activeTab"
+  ]
+}
