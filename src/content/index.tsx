@@ -1,6 +1,13 @@
-import React from 'react';
+import { MathJaxContext } from "better-react-mathjax";
+import React, { useState } from "react";
 import { createRoot } from 'react-dom/client';
+import MathInput, { MathJaxInput } from "./MathInput/MathInput.tsx";
 import SampleComponent from './SampleComponent';
+
+const config = {
+    loader: { load: ["input/asciimath"] }
+};
+
 
 // Create a container div for the React component
 const container = document.createElement('div');
@@ -11,8 +18,8 @@ document.body.appendChild(container);
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <SampleComponent />
+      <MathJaxContext config={config}>
+          <MathInput />
+      </MathJaxContext>
   </React.StrictMode>
 );
-
-console.log('PrairieLearn Input Plus extension loaded!');

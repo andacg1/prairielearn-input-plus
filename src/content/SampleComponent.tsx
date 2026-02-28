@@ -22,7 +22,7 @@ const SampleComponent: React.FC = () => {
         PrairieLearn Input Plus
       </h3>
       <p style={{ margin: '0 0 10px 0', color: '#666' }}>
-        This is a sample React component injected into the page!
+        Math Input
       </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <button
