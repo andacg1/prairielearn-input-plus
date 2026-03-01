@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# PrairieLearn Input Plus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Firefox browser extension that enhances webpage interaction with React components, built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## React Compiler
+- Node.js (v18 or higher)
+- npm or yarn
+- Firefox browser
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Development Setup
 
-## Expanding the ESLint configuration
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd prairielearn-input-plus
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+3. **Build the extension**
+   ```bash
+   npm run build
+   ```
+   This will create a `dist` folder with the compiled extension.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+4. **Load the extension in Firefox**
+   - Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
+   - Click "Load Temporary Add-on"
+   - Navigate to the `dist` folder in your project
+   - Select the `manifest.json` file
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+5. **Test the extension**
+   - Visit any webpage
+   - The extension will inject a React component when you focus on text input fields matching `.form-control[type='text']`
+
+### Development Mode
+
+To automatically rebuild the extension when you make changes:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+After making changes, you'll need to reload the extension in Firefox:
+- Go to `about:debugging#/runtime/this-firefox`
+- Click "Reload" next to your extension
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+├── src/
+│   └── content/
+│       ├── index.tsx           # Content script entry point
+│       ├── MathInput/
+│       │   └── MathInput.tsx   # Main React component
+│       └── SampleComponent.tsx # Sample component
+├── dist/                       # Built extension (generated)
+├── manifest.json               # Firefox extension manifest
+├── vite.config.ts             # Vite bundler configuration
+└── package.json               # Project dependencies
+```
+
+## Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Fast bundling
+- **Firefox WebExtensions API** - Browser extension APIs
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+The production-ready extension will be in the `dist` folder.
