@@ -4,6 +4,7 @@ import s from "./MathInput.module.css";
 import Portal from "@mui/material/Portal";
 import { addStyles, EditableMathField } from "react-mathquill";
 import asciiTolatex from 'asciimath-to-latex'
+import "./global.css"
 
 addStyles();
 
@@ -18,6 +19,7 @@ const MathInput = ({
     const formSelector = ".form-control[type='text']";
     const [latex, setLatex] = useState("\\frac{1}{\\sqrt{2}}\\cdot 2");
     const [container, setContainer] = useState<HTMLElement | null>(null);
+    const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
     const updateValue = useCallback((newValue: string) => {
         (container?.querySelector(formSelector) as HTMLInputElement).value = MQtoAM(newValue, true);
@@ -31,6 +33,14 @@ const MathInput = ({
             if (target.matches(formSelector) && !container?.contains(target)) {
                 setContainer(target.parentElement);
                 setLatex(asciiTolatex(target.value));
+
+                // Calculate position relative to viewport
+                const rect = target.getBoundingClientRect();
+                setPosition({
+                    top: rect.bottom + window.scrollY,
+                    left: rect.left + window.scrollX,
+                    width: rect.width
+                });
             }
         };
 
@@ -63,7 +73,8 @@ const MathInput = ({
                ref={containerRef}
                style={{
                    position: "absolute",
-                   zIndex: 1000,
+                   zIndex: 99999999,
+                   overflow: "visible",
                    top: "100%",
                    backgroundColor: "white",
                    padding: "0.2em"
@@ -73,6 +84,11 @@ const MathInput = ({
                     // console.log("MathField mounted", mathField);
                     mathField.focus();
                     Object.assign(mathField.el().style, {padding: "0.5em"})
+                    mathField.el().scrollIntoView({
+                        container: "nearest",
+                        behavior: "instant",
+
+                    });
                 }}
                 latex={latex}
                 onChange={(mathField) => {
