@@ -3,6 +3,14 @@
   "name": "PrairieLearn Input Plus",
   "version": "1.0.0",
   "description": "A Firefox extension that enhances webpage interaction with React components",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@prairielearn-input-plus",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "content_scripts": [
     {
       "matches": ["https://us.prairielearn.com/*"],
