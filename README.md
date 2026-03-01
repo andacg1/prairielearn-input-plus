@@ -1,6 +1,7 @@
 # PrairieLearn Input Plus
 
-A Firefox browser extension that enhances webpage interaction with React components, built with React, TypeScript, and Vite.
+A Firefox browser extension that adds Desmos-like input fields to PrairieLearn.
+![img.png](demo.png)
 
 ## Installation
 
