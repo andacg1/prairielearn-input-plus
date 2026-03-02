@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+// import webExtension, { readJsonFile } from "vite-plugin-web-extension";
 import { resolve } from 'path'
 import { copyFileSync } from 'fs'
 
@@ -11,9 +12,26 @@ const copyManifest = () => ({
   }
 })
 
+// function generateManifest() {
+//   const manifest = readJsonFile("src/manifest.json");
+//   const pkg = readJsonFile("package.json");
+//   return {
+//     name: pkg.name,
+//     description: pkg.description,
+//     version: pkg.version,
+//     ...manifest
+//   };
+// }
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), copyManifest()],
+  plugins: [
+    react(),
+    // webExtension({
+    //   manifest: generateManifest
+    // }),
+    copyManifest()
+  ],
   build: {
     outDir: 'dist',
     rollupOptions: {
