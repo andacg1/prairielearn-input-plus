@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { MQtoAM } from "./AMtoMQ.ts";
 import s from "./MathInput.module.css";
 import Portal from "@mui/material/Portal";
@@ -8,18 +8,11 @@ import "./global.css"
 
 addStyles();
 
-type MathInputProps = {
-    children?: ReactNode
-}
-
-
-const MathInput = ({
-    children
-}: MathInputProps) => {
+const MathInput = () => {
     const formSelector = ".form-control[type='text']";
     const [latex, setLatex] = useState("\\frac{1}{\\sqrt{2}}\\cdot 2");
     const [container, setContainer] = useState<HTMLElement | null>(null);
-    const [position, setPosition] = useState({ top: 0, left: 0, width: 0 });
+    const [, setPosition] = useState({ top: 0, left: 0, width: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
     const updateValue = useCallback((newValue: string) => {
         (container?.querySelector(formSelector) as HTMLInputElement).value = MQtoAM(newValue, true);
@@ -28,7 +21,6 @@ const MathInput = ({
     useEffect(() => {
         const handleFocus = (event: FocusEvent) => {
             const target = event.target as HTMLInputElement;
-            const relatedTarget = event.relatedTarget as HTMLElement;
             // console.log("focus", container, relatedTarget);
             if (target.matches(formSelector) && !container?.contains(target)) {
                 setContainer(target.parentElement);
@@ -45,7 +37,6 @@ const MathInput = ({
         };
 
         const handleBlur = (event: FocusEvent) => {
-            const target = event.target as HTMLElement;
             const relatedTarget = event.relatedTarget as HTMLElement;
             // console.log(container, relatedTarget);
 
@@ -85,7 +76,7 @@ const MathInput = ({
                     mathField.focus();
                     Object.assign(mathField.el().style, {padding: "0.5em"})
                     mathField.el().scrollIntoView({
-                        container: "nearest",
+                        // container: "nearest",
                         behavior: "instant",
 
                     });

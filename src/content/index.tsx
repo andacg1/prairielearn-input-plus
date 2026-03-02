@@ -1,9 +1,7 @@
 import { MathJaxContext } from "better-react-mathjax";
-import React, { useState } from "react";
+import React from "react";
 import { createRoot } from 'react-dom/client';
-import MathInput, { MathJaxInput } from "./MathInput/MathInput.tsx";
-import SampleComponent from './SampleComponent';
-
+import MathInput from "./MathInput/MathInput.tsx";
 const config = {
     loader: { load: ["input/asciimath"] }
 };
