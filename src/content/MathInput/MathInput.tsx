@@ -77,7 +77,8 @@ const MathInput = () => {
                     Object.assign(mathField.el().style, {padding: "0.5em"})
                     mathField.el().scrollIntoView({
                         // container: "nearest",
-                        behavior: "instant",
+                        block: "center",
+                        behavior: "smooth",
 
                     });
                 }}
