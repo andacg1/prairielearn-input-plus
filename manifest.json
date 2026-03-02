@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "PrairieLearn Input Plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Firefox extension that enhances webpage interaction with React components",
   "browser_specific_settings": {
     "gecko": {
