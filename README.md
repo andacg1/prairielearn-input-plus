@@ -5,10 +5,23 @@ A Firefox browser extension that adds Desmos-like functionality to PrairieLearn 
 The full text in the example input below is `2pi* r+pi*sqrt(h^2+r^2)+pi* r*(2r)/(2sqrt(h^2+r^2))`, but cuts off after 6 characters.\
 This extension renders a dynamic-width input field over any focused input field that supports math input, very similar to Desmos.
 
+
+
+https://github.com/user-attachments/assets/ff833c3b-9b96-450d-af57-2cf791622ff3
+
+
+
 ![img.png](demo.png)
 
-
 ## Installation
+
+### Download for Firefox
+https://addons.mozilla.org/en-CA/firefox/addon/prairielearn-input-plus/
+
+### Download for Chrome
+*TBA. Waiting for approval!* 
+
+## Contributing
 
 ### Prerequisites
 
